@@ -1,0 +1,21 @@
+{
+  "bookings": [],
+  "users": [
+    {
+      "firstName": "Karthick Kalaivanan",
+      "lastName": "K",
+      "email": "karthickkalaivanan101@gmail.com",
+      "phone": "+91 9600284536",
+      "dob": "2004-10-22",
+      "gender": "Male",
+      "address": "Chennai, Tamil Nadu",
+      "passportNumber": "",
+      "nationality": "Indian",
+      "preferredClass": "First Class",
+      "id": 1,
+      "notifications": true,
+      "newsletter": false,
+      "createdAt": "2026-03-13T00:00:00.000Z"
+    }
+  ]
+}
