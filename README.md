@@ -358,7 +358,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## 👤 Author
 
 **Karthick Kalaivanan**
-- GitHub: [@Karthick1242004](https://github.com/Karthick1242004)
+- GitHub: https://github.com/k4rthickx22/
 - Email: karthickkalaivanan101@gmail.com
 
 ---
