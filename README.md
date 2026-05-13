@@ -13,19 +13,6 @@
 [Live Demo](#) · [Report Bug](https://github.com/Karthick1242004/Flight-Ticket-Booking/issues) · [Request Feature](https://github.com/Karthick1242004/Flight-Ticket-Booking/issues)
 
 </div>
-
----
-
-## 📸 Screenshots
-
-| Home / Search | Flight Results | Booking Flow |
-|---|---|---|
-| Cinematic hero + FlightSearchCard | Filter sidebar + FlightDetailCard list | 3-step stepper with seat map |
-
-| Boarding Pass | Booking History | Settings |
-|---|---|---|
-| Animated QR stub + confetti | Cancel / view ticket per booking | Profile, notifications, security |
-
 ---
 
 ## 🚀 Features
