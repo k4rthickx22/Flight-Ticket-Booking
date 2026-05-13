@@ -5,8 +5,12 @@ import Main from '../components/Main';
 const SearchResultsPage = () => {
   return (
     <div>
-      {/* Compact search bar at top */}
-      <div style={{ background: 'linear-gradient(135deg, #4361ee 0%, #7209b7 100%)', padding: '20px 28px 20px' }}>
+      {/* Compact dark navy search bar */}
+      <div style={{
+        background: 'var(--navy-mid)',
+        borderBottom: '1px solid var(--border)',
+        padding: '20px 28px',
+      }}>
         <FlightSearchCard compact={true} />
       </div>
 

@@ -20,7 +20,7 @@ export function BookingProvider({ children }) {
       // Sort newest first
       setBookings(data.sort((a, b) => new Date(b.bookedAt) - new Date(a.bookedAt)));
     } catch (err) {
-      console.error('Could not reach API. Falling back to localStorage.', err);
+      console.warn('API unavailable — using localStorage fallback.');
       // Graceful fallback to localStorage if API is not running
       try {
         setBookings(JSON.parse(localStorage.getItem('fa_bookings') || '[]'));

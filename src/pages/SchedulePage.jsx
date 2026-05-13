@@ -1,5 +1,4 @@
 import React from 'react';
-import { MdSchedule } from 'react-icons/md';
 
 const SCHEDULE = [
   { route: 'Chennai → Mumbai', time: '06:30 AM – 09:00 AM', days: 'Daily', airline: 'IndiGo', status: 'On Time' },
@@ -14,32 +13,67 @@ const SCHEDULE = [
 
 const SchedulePage = () => (
   <div>
-    <div style={{ background: 'linear-gradient(135deg, #4361ee 0%, #7209b7 100%)', padding: '28px 32px' }}>
-      <h1 style={{ color: 'white', fontSize: 22, fontWeight: 800, margin: 0 }}>Flight Schedule</h1>
-      <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 13, marginTop: 4, marginBottom: 0 }}>Today's departure schedule across all routes</p>
+    {/* Luxury navy header */}
+    <div className="page-hero">
+      <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 8 }}>
+        ✦ Departures
+      </div>
+      <h1>Flight Schedule</h1>
+      <p>Today's departure schedule across all routes</p>
     </div>
+
     <div className="page-content">
-      <div style={{ background: 'white', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: 'var(--shadow-sm)', border: '1.5px solid var(--border-color)' }}>
+      <div style={{
+        background: 'var(--bg-card)',
+        border: '1px solid var(--border)',
+        borderRadius: 'var(--r-lg)',
+        overflow: 'hidden',
+        boxShadow: 'var(--shadow-card)',
+      }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
-            <tr style={{ background: 'var(--primary-light)', borderBottom: '2px solid var(--border-color)' }}>
+            <tr style={{ background: 'rgba(201,168,76,0.08)', borderBottom: '1px solid var(--border)' }}>
               {['Route', 'Time', 'Days', 'Airline', 'Status'].map(h => (
-                <th key={h} style={{ padding: '14px 18px', textAlign: 'left', fontSize: 12, fontWeight: 700, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{h}</th>
+                <th key={h} style={{
+                  padding: '14px 20px',
+                  textAlign: 'left',
+                  fontSize: 10,
+                  fontWeight: 700,
+                  color: 'var(--gold)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.12em',
+                  fontFamily: 'var(--font-sans)',
+                }}>{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {SCHEDULE.map((row, i) => (
-              <tr key={i} style={{ borderBottom: '1px solid var(--border-color)', transition: 'background 0.2s' }}
-                onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-main)'}
-                onMouseLeave={e => e.currentTarget.style.background = 'white'}
+              <tr
+                key={i}
+                style={{ borderBottom: '1px solid var(--border)', transition: 'background 0.18s' }}
+                onMouseEnter={e => e.currentTarget.style.background = 'rgba(201,168,76,0.05)'}
+                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
               >
-                <td style={{ padding: '14px 18px', fontWeight: 600, fontSize: 14, color: 'var(--text-primary)' }}>{row.route}</td>
-                <td style={{ padding: '14px 18px', fontSize: 13, color: 'var(--text-secondary)' }}>{row.time}</td>
-                <td style={{ padding: '14px 18px', fontSize: 13, color: 'var(--text-secondary)' }}>{row.days}</td>
-                <td style={{ padding: '14px 18px', fontSize: 13, fontWeight: 500, color: 'var(--text-primary)' }}>{row.airline}</td>
-                <td style={{ padding: '14px 18px' }}>
-                  <span className={`tag ${row.status === 'On Time' ? 'tag-green' : 'tag-orange'}`}>{row.status}</span>
+                <td style={{ padding: '16px 20px', fontWeight: 600, fontSize: 14, color: 'var(--cream)', fontFamily: 'var(--font-sans)' }}>{row.route}</td>
+                <td style={{ padding: '16px 20px', fontSize: 13, color: 'var(--text-secondary)', fontFamily: 'var(--font-sans)' }}>{row.time}</td>
+                <td style={{ padding: '16px 20px', fontSize: 13, color: 'var(--text-secondary)', fontFamily: 'var(--font-sans)' }}>{row.days}</td>
+                <td style={{ padding: '16px 20px', fontSize: 13, fontWeight: 500, color: 'var(--cream)', fontFamily: 'var(--font-sans)' }}>{row.airline}</td>
+                <td style={{ padding: '16px 20px' }}>
+                  <span style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    padding: '4px 12px',
+                    borderRadius: 20,
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
+                    fontFamily: 'var(--font-sans)',
+                    background: row.status === 'On Time' ? 'rgba(6,214,160,0.12)' : 'rgba(255,160,80,0.12)',
+                    color: row.status === 'On Time' ? '#06d6a0' : '#ffb060',
+                    border: `1px solid ${row.status === 'On Time' ? 'rgba(6,214,160,0.3)' : 'rgba(255,160,80,0.3)'}`,
+                  }}>
+                    {row.status}
+                  </span>
                 </td>
               </tr>
             ))}

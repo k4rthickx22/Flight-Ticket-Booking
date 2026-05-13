@@ -5,12 +5,12 @@ import { userService } from '../services/userService';
 
 const SettingsPage = () => {
   const [profile, setProfile] = useState({
-    firstName: 'Karthick', lastName: 'Kumar', email: 'karthick@example.com',
-    phone: '+91 98765 43210', dob: '', gender: 'Male', address: '',
+    firstName: '', lastName: '', email: '',
+    phone: '', dob: '', gender: 'Male', address: '',
     passportNumber: '', nationality: 'Indian', preferredClass: 'Economy',
   });
   const [notifications, setNotifications] = useState({ email: true, sms: false, priceAlerts: true });
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
   const [saving, setSaving] = useState(false);
   const [loadError, setLoadError] = useState(false);
 
@@ -42,10 +42,23 @@ const SettingsPage = () => {
 
   return (
     <div>
-      <div style={{ background: 'linear-gradient(135deg, #4361ee 0%, #7209b7 100%)', padding: '28px 32px' }}>
-        <h1 style={{ color: 'white', fontSize: 22, fontWeight: 800, margin: 0 }}>Settings</h1>
-        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 13, marginTop: 4, marginBottom: 0 }}>
-          Manage your account preferences {loadError && <span style={{ background: 'rgba(255,100,100,0.3)', borderRadius: 6, padding: '2px 8px', fontSize: 11, marginLeft: 8 }}>⚠ API offline — changes won't save</span>}
+      {/* Luxury navy header */}
+      <div style={{
+        background: 'var(--navy-mid)',
+        borderBottom: '1px solid var(--border)',
+        padding: '28px 32px',
+      }}>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 8 }}>
+          ✦ Account
+        </div>
+        <h1 style={{ fontFamily: 'var(--font-serif)', color: 'var(--cream)', fontSize: 28, fontWeight: 700, margin: 0, lineHeight: 1.2 }}>Settings</h1>
+        <p style={{ color: 'var(--text-secondary)', fontSize: 13, marginTop: 6, marginBottom: 0 }}>
+          Manage your account preferences
+          {loadError && (
+            <span style={{ background: 'rgba(255,100,100,0.18)', border: '1px solid rgba(255,100,100,0.3)', borderRadius: 6, padding: '2px 10px', fontSize: 11, marginLeft: 10, color: '#ff7070' }}>
+              ⚠ API offline — changes won't save
+            </span>
+          )}
         </p>
       </div>
 

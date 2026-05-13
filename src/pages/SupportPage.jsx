@@ -6,7 +6,7 @@ const FAQS = [
   { q: 'What is the baggage allowance?', a: 'Standard economy tickets include 15 kg of check-in baggage. Business class includes 25 kg. You can add extra baggage during booking.' },
   { q: 'How do I get my boarding pass?', a: 'Once you complete your booking, a boarding pass is generated instantly in the Ticket page. You can print it or show it on your mobile device.' },
   { q: 'What documents do I need at the airport?', a: 'You need a valid government-issued photo ID (Aadhaar, Passport, PAN) along with your booking reference number or printed boarding pass.' },
-  { q: 'Can I select my preferred seat?', a: 'Yes! During the booking process, you can choose your preferred seat from the interactive seat map.' },
+  { q: 'Can I select my preferred seat?', a: 'Yes! During booking, you can select multiple seats based on the number of passengers from the interactive seat map.' },
 ];
 
 const SupportPage = () => {
@@ -19,33 +19,76 @@ const SupportPage = () => {
       toast.error('Please fill all fields.', { position: 'top-center' });
       return;
     }
-    toast.success('Message sent! We\'ll respond within 24 hours.', { position: 'top-center' });
+    toast.success("Message sent! We'll respond within 24 hours.", { position: 'top-center' });
     setForm({ name: '', email: '', message: '' });
   };
 
   return (
     <div>
-      <div style={{ background: 'linear-gradient(135deg, #4361ee 0%, #7209b7 100%)', padding: '28px 32px' }}>
-        <h1 style={{ color: 'white', fontSize: 22, fontWeight: 800, margin: 0 }}>Support Center</h1>
-        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 13, marginTop: 4, marginBottom: 0 }}>We're here to help you 24/7</p>
+      {/* Luxury navy header */}
+      <div className="page-hero">
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 8 }}>
+          ✦ Help & Support
+        </div>
+        <h1>Support Center</h1>
+        <p>We're here to help you 24/7</p>
       </div>
+
       <div className="page-content">
-        <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+
           {/* FAQs */}
           <div style={{ flex: 1, minWidth: 280 }}>
             <div className="section-title">Frequently Asked Questions</div>
             <div className="section-sub">Quick answers to common queries</div>
             {FAQS.map((faq, i) => (
-              <div key={i} style={{ background: 'white', border: '1.5px solid var(--border-color)', borderRadius: 'var(--radius-md)', marginBottom: 10, overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
+              <div key={i} style={{
+                background: 'var(--bg-card)',
+                border: `1px solid ${open === i ? 'var(--border-mid)' : 'var(--border)'}`,
+                borderRadius: 'var(--r-md)',
+                marginBottom: 10,
+                overflow: 'hidden',
+                transition: 'border-color 0.2s',
+              }}>
                 <button
-                  style={{ width: '100%', padding: '14px 18px', background: 'none', border: 'none', textAlign: 'left', fontFamily: 'Poppins, sans-serif', fontSize: 14, fontWeight: 600, color: 'var(--text-primary)', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                  style={{
+                    width: '100%',
+                    padding: '16px 20px',
+                    background: 'none',
+                    border: 'none',
+                    textAlign: 'left',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: 14,
+                    fontWeight: 600,
+                    color: 'var(--cream)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    gap: 12,
+                  }}
                   onClick={() => setOpen(open === i ? null : i)}
                 >
                   {faq.q}
-                  <span style={{ fontSize: 18, color: 'var(--primary)', transition: 'transform 0.2s', transform: open === i ? 'rotate(45deg)' : 'rotate(0)' }}>+</span>
+                  <span style={{
+                    fontSize: 20,
+                    color: 'var(--gold)',
+                    transition: 'transform 0.2s',
+                    transform: open === i ? 'rotate(45deg)' : 'rotate(0)',
+                    flexShrink: 0,
+                  }}>+</span>
                 </button>
                 {open === i && (
-                  <div style={{ padding: '0 18px 14px', fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.7 }}>{faq.a}</div>
+                  <div style={{
+                    padding: '0 20px 16px',
+                    fontSize: 13,
+                    color: 'var(--text-secondary)',
+                    lineHeight: 1.75,
+                    fontFamily: 'var(--font-sans)',
+                    borderTop: '1px solid var(--border)',
+                    paddingTop: 12,
+                    marginTop: 0,
+                  }}>{faq.a}</div>
                 )}
               </div>
             ))}
@@ -55,11 +98,12 @@ const SupportPage = () => {
           <div style={{ width: 300, flexShrink: 0 }}>
             <div className="section-title">Contact Us</div>
             <div className="section-sub">Send us a message</div>
+
             <div className="book-card">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label>Your Name</label>
-                  <input className="form-control" value={form.name} onChange={e => setForm(p => ({...p, name: e.target.value}))} placeholder="Karthick Kumar" />
+                  <input className="form-control" value={form.name} onChange={e => setForm(p => ({...p, name: e.target.value}))} placeholder="Your full name" />
                 </div>
                 <div className="form-group">
                   <label>Email Address</label>
@@ -75,10 +119,17 @@ const SupportPage = () => {
 
             {/* Contact Info */}
             <div className="book-card" style={{ marginTop: 16 }}>
-              <div style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 2 }}>
-                <div>📧 support@frostairlines.in</div>
-                <div>📞 1800-XXX-XXXX (Toll-Free)</div>
-                <div>🕐 24/7 Support Available</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {[
+                  { icon: '📧', text: 'support@frostairlines.in' },
+                  { icon: '📞', text: '1800-XXX-XXXX (Toll-Free)' },
+                  { icon: '🕐', text: '24/7 Support Available' },
+                ].map((item, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 13, color: 'var(--text-secondary)', fontFamily: 'var(--font-sans)' }}>
+                    <span style={{ fontSize: 18 }}>{item.icon}</span>
+                    {item.text}
+                  </div>
+                ))}
               </div>
             </div>
           </div>

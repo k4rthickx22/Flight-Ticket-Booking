@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MdFlightTakeoff, MdFlightLand, MdCalendarToday, MdSwapHoriz, MdSearch, MdPerson } from 'react-icons/md';
+import { MdFlightTakeoff, MdFlightLand, MdCalendarToday, MdSwapHoriz, MdSearch, MdPerson, MdAirlineSeatLegroomExtra } from 'react-icons/md';
 import { useBooking } from '../context/BookingContext';
 import { searchFlights, CITIES } from '../data/flightData';
 
@@ -13,6 +13,7 @@ const FlightSearchCard = ({ compact = false, onSearch }) => {
     to: searchParams.to || '',
     date: searchParams.date || '',
     passengers: searchParams.passengers || 1,
+    cabinClass: searchParams.cabinClass || 'Economy',
     tripType: 'one-way',
   });
   const [error, setError] = useState('');
@@ -41,15 +42,20 @@ const FlightSearchCard = ({ compact = false, onSearch }) => {
     setError('');
     setLoading(true);
 
-    // Brief simulated loading for better UX
     setTimeout(() => {
       const results = searchFlights(form.from, form.to, form.date);
       setLoading(false);
       if (results.length === 0) {
-        setError('No flights found for this route. Try Chennai, Mumbai, Delhi, Bengaluru, Hyderabad, Kolkata, Goa.');
+        setError('No flights found. Try: Chennai, Mumbai, Delhi, Bengaluru, Hyderabad, Kolkata, Goa.');
         return;
       }
-      setSearchParams({ from: form.from, to: form.to, date: form.date, passengers: Number(form.passengers) });
+      setSearchParams({
+        from: form.from,
+        to: form.to,
+        date: form.date,
+        passengers: Number(form.passengers),
+        cabinClass: form.cabinClass,
+      });
       setSearchResults(results);
       if (onSearch) onSearch(results);
       else navigate('/results');
@@ -139,6 +145,25 @@ const FlightSearchCard = ({ compact = false, onSearch }) => {
             </div>
           </div>
 
+          {/* CABIN CLASS */}
+          <div className="search-field" style={{ maxWidth: 140 }}>
+            <label>Cabin Class</label>
+            <div className="search-input-wrap">
+              <MdAirlineSeatLegroomExtra className="search-input-icon" />
+              <select
+                className="search-input"
+                name="cabinClass"
+                value={form.cabinClass}
+                onChange={handleChange}
+                style={{ paddingLeft: 38 }}
+              >
+                <option>Economy</option>
+                <option>Business</option>
+                <option>First Class</option>
+              </select>
+            </div>
+          </div>
+
           {/* PASSENGERS */}
           <div className="search-field" style={{ maxWidth: 110 }}>
             <label>Passengers</label>
@@ -159,9 +184,7 @@ const FlightSearchCard = ({ compact = false, onSearch }) => {
           {/* SEARCH */}
           <button type="submit" className="search-btn" disabled={loading}>
             {loading ? (
-              <>
-                <span className="search-spinner" /> Searching...
-              </>
+              <><span className="search-spinner" /> Searching...</>
             ) : (
               <><MdSearch size={18} /> Search Flights</>
             )}
@@ -169,7 +192,7 @@ const FlightSearchCard = ({ compact = false, onSearch }) => {
         </div>
 
         {error && (
-          <div style={{ marginTop: 12, fontSize: 13, color: '#e63946', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ marginTop: 12, fontSize: 13, color: '#e8a04c', display: 'flex', alignItems: 'center', gap: 6 }}>
             ⚠️ {error}
           </div>
         )}

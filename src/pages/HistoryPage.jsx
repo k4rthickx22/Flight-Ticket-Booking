@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 const HistoryPage = () => {
   const navigate = useNavigate();
   const { bookings, removeBooking } = useBooking();
-  const [confirmCancel, setConfirmCancel] = useState(null); // bookingId to cancel
+  const [confirmCancel, setConfirmCancel] = useState(null);
 
   const handleCancel = (id) => {
     removeBooking(id);
@@ -17,9 +17,13 @@ const HistoryPage = () => {
 
   return (
     <div>
-      <div style={{ background: 'linear-gradient(135deg, #4361ee 0%, #7209b7 100%)', padding: '28px 32px' }}>
-        <h1 style={{ color: 'white', fontSize: 22, fontWeight: 800, margin: 0 }}>My Bookings</h1>
-        <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 13, marginTop: 4, marginBottom: 0 }}>Your flight booking history</p>
+      {/* Luxury navy header */}
+      <div className="page-hero">
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--blue-light)', marginBottom: 8 }}>
+          ✦ Travel History
+        </div>
+        <h1>My Bookings</h1>
+        <p>Your flight booking history</p>
       </div>
 
       <div className="page-content">
@@ -47,7 +51,7 @@ const HistoryPage = () => {
                 : '—';
               return (
                 <div key={b.id} className="history-card">
-                  <div style={{ background: 'linear-gradient(135deg, #4361ee, #7209b7)', borderRadius: 10, width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: 22, flexShrink: 0 }}>
+                  <div style={{ background: 'linear-gradient(135deg, #1557B0, #1A73E8)', borderRadius: 10, width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 22, flexShrink: 0 }}>
                     ✈
                   </div>
                   <div className="history-route" style={{ flex: 1 }}>
@@ -69,13 +73,13 @@ const HistoryPage = () => {
                       <div style={{ display: 'flex', gap: 6 }}>
                         <button
                           onClick={() => handleCancel(b.id)}
-                          style={{ flex: 1, padding: '6px 10px', background: 'var(--danger)', color: 'white', border: 'none', borderRadius: 'var(--radius-sm)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}
+                          style={{ flex: 1, padding: '6px 10px', background: 'rgba(239,35,60,0.7)', color: 'white', border: 'none', borderRadius: 'var(--r-sm)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}
                         >
                           Confirm
                         </button>
                         <button
                           onClick={() => setConfirmCancel(null)}
-                          style={{ flex: 1, padding: '6px 10px', background: 'var(--border-color)', color: 'var(--text-secondary)', border: 'none', borderRadius: 'var(--radius-sm)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}
+                          style={{ flex: 1, padding: '6px 10px', background: 'var(--border)', color: 'var(--text-secondary)', border: 'none', borderRadius: 'var(--r-sm)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}
                         >
                           Keep
                         </button>
@@ -83,7 +87,7 @@ const HistoryPage = () => {
                     ) : (
                       <button
                         onClick={() => setConfirmCancel(b.id)}
-                        style={{ padding: '6px 12px', background: 'rgba(239,35,60,0.08)', color: 'var(--danger)', border: '1.5px solid rgba(239,35,60,0.2)', borderRadius: 'var(--radius-sm)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', transition: 'var(--transition)' }}
+                        style={{ padding: '6px 12px', background: 'rgba(234,67,53,0.08)', color: '#EA4335', border: '1.5px solid rgba(234,67,53,0.2)', borderRadius: 'var(--r-pill)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.18s' }}
                       >
                         Cancel Booking
                       </button>

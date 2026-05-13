@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
-  MdFlightTakeoff, MdConfirmationNumber, MdSchedule,
-  MdHistory, MdSupportAgent, MdSettings, MdHome, MdMenu, MdClose
+  MdFlightTakeoff, MdSchedule,
+  MdHistory, MdSupportAgent, MdHome, MdMenu, MdClose, MdSettings
 } from 'react-icons/md';
 import { useBooking } from '../context/BookingContext';
 
@@ -18,29 +18,26 @@ const Sidebar = () => {
   const { bookings } = useBooking();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
-
   const closeMobile = () => setMobileOpen(false);
 
   return (
     <>
-      {/* Mobile hamburger */}
       <button className="sidebar-toggle" onClick={() => setMobileOpen(true)} title="Open menu">
         <MdMenu />
       </button>
 
-      {/* Overlay for mobile */}
       <div
         className={`sidebar-overlay${mobileOpen ? ' open' : ''}`}
         onClick={closeMobile}
       />
 
       <aside className={`sidebar${mobileOpen ? ' open' : ''}`}>
-        {/* Close button (mobile only) */}
         <button
           onClick={closeMobile}
           style={{
-            display: 'flex', alignSelf: 'flex-end', marginBottom: 8, background: 'none',
-            border: 'none', cursor: 'pointer', color: 'var(--text-muted)', fontSize: 22,
+            display: 'flex', alignSelf: 'flex-end', marginBottom: 8, marginRight: 16,
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: 'var(--text-secondary)', fontSize: 22,
           }}
           title="Close menu"
         >
@@ -55,11 +52,11 @@ const Sidebar = () => {
           <div className="brand-icon">✈</div>
           <div>
             <div className="brand-text">Frost Airlines</div>
-            <div className="brand-sub">Book · Fly · Enjoy</div>
+            <div className="brand-sub">Fly · Book · Explore</div>
           </div>
         </div>
 
-        <div className="sidebar-section-label">Menu</div>
+        <div className="sidebar-section-label">Navigation</div>
         <nav className="sidebar-nav">
           {navLinks.map(link => (
             <NavLink
