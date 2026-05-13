@@ -1,5 +1,50 @@
 {
-  "bookings": [],
+  "bookings": [
+    {
+      "id": "04D37154",
+      "flight": {
+        "id": "FL0011",
+        "flightNumber": "AK680",
+        "airline": "AirAsia India",
+        "airlineId": "AK",
+        "airlineColor": "#e63946",
+        "from": "Chennai",
+        "fromCode": "MAA",
+        "to": "Mumbai",
+        "toCode": "BOM",
+        "departure": "20:00",
+        "departureFormatted": "8:00 PM",
+        "arrival": "22:15",
+        "arrivalFormatted": "10:15 PM",
+        "duration": "2h 15m",
+        "durationMinutes": 135,
+        "class": "Economy",
+        "price": 3921,
+        "seatsAvailable": 11,
+        "stops": 0,
+        "stopLabel": "Non-stop",
+        "baggage": "15 kg",
+        "meal": false,
+        "refundable": true
+      },
+      "passenger": {
+        "firstName": "Karthick Kalaivanan",
+        "lastName": "K",
+        "email": "karthickkalaivanan101@gmail.com",
+        "phone": "+919600284536",
+        "dob": "2004-10-22",
+        "gender": "Male"
+      },
+      "seat": "4C",
+      "seats": [
+        "4C"
+      ],
+      "passengers": 1,
+      "date": "2026-05-21",
+      "totalPrice": 3921,
+      "bookedAt": "2026-05-13T19:38:21.127Z"
+    }
+  ],
   "users": [
     {
       "firstName": "Karthick Kalaivanan",
