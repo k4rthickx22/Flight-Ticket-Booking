@@ -13,7 +13,6 @@
 [Live Demo](#) · [Report Bug](https://github.com/Karthick1242004/Flight-Ticket-Booking/issues) · [Request Feature](https://github.com/Karthick1242004/Flight-Ticket-Booking/issues)
 
 </div>
----
 
 ## 🚀 Features
 
