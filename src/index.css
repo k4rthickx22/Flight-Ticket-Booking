@@ -86,13 +86,18 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
-  background: var(--bg-page);
-  color: var(--text-primary);
+  background-color: #0A0F1E !important;
+  background: #0A0F1E !important;
+  color: #F1F5FF !important;
   min-height: 100vh;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: var(--text-sm);
+}
+#root {
+  background: #0A0F1E;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5 {
@@ -137,11 +142,13 @@ input, select, textarea { font-family: var(--font-body); }
 }
 
 /* ── LAYOUT ─────────────────────────────────────────────── */
-.app-layout { display: flex; min-height: 100vh; }
+.app-layout { display: flex; min-height: 100vh; background: #0A0F1E; }
 .main-content {
   flex: 1;
   margin-left: var(--sidebar-width);
   overflow-x: hidden;
+  background: #0A0F1E;
+  min-height: 100vh;
   animation: fadeSlideIn var(--t3) var(--ease);
 }
 @media (max-width: 768px) { .main-content { margin-left: 0; } }
@@ -1109,3 +1116,60 @@ input, select, textarea { font-family: var(--font-body); }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
+
+/* ── BOOTSTRAP OVERRIDES ────────────────────────────────── */
+.container, .container-fluid, .row, .col, [class*='col-'] {
+  background: transparent;
+}
+.form-control, .form-select {
+  background-color: rgba(255,255,255,0.04) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  color: #F1F5FF !important;
+}
+.form-control::placeholder { color: rgba(241,245,255,0.38) !important; }
+.form-control:focus {
+  background-color: rgba(255,255,255,0.06) !important;
+  border-color: #1A73E8 !important;
+  box-shadow: 0 0 0 3px rgba(26,115,232,0.28) !important;
+  color: #F1F5FF !important;
+}
+select option { background: #111827 !important; color: #F1F5FF !important; }
+
+/* ── ROUTE CARD TEXT FIX ────────────────────────────────── */
+.rc-cities { color: #F1F5FF !important; }
+.rc-price { color: #4D94FF !important; }
+.section-title { color: #F1F5FF !important; }
+.section-sub { color: rgba(241,245,255,0.55) !important; }
+.stat-value { color: #F1F5FF !important; }
+.stat-label { color: rgba(241,245,255,0.55) !important; }
+.history-route h4 { color: #F1F5FF !important; }
+.history-route p { color: rgba(241,245,255,0.55) !important; }
+.page-hero h1 { color: #F1F5FF !important; }
+.page-hero p { color: rgba(241,245,255,0.55) !important; }
+.hero-title { color: #ffffff !important; }
+.hero-subtitle { color: rgba(255,255,255,0.75) !important; }
+.hero-eyebrow { color: #4D94FF !important; }
+.rs-city { color: #F1F5FF !important; }
+.rs-date, .rs-pax { color: rgba(241,245,255,0.65) !important; }
+.results-meta { color: rgba(241,245,255,0.55) !important; }
+.results-meta strong { color: #F1F5FF !important; }
+.filter-title { color: rgba(241,245,255,0.65) !important; }
+.filter-label { color: rgba(241,245,255,0.45) !important; }
+.pill { color: rgba(241,245,255,0.65) !important; }
+.pill.active { color: #4D94FF !important; }
+.fc-time-val { color: #F1F5FF !important; }
+.fc-time-code { color: rgba(241,245,255,0.45) !important; }
+.fc-airline-badge { color: #F1F5FF !important; }
+.fc-flight-no { color: rgba(241,245,255,0.45) !important; }
+.fc-duration { color: #4D94FF !important; }
+.fc-price { color: #4D94FF !important; }
+.book-card-title { color: #F1F5FF !important; }
+.form-group label { color: rgba(241,245,255,0.45) !important; }
+.s-label { color: rgba(241,245,255,0.45) !important; }
+.s-value { color: #F1F5FF !important; }
+.brand-text { color: #F1F5FF !important; }
+.sidebar-link { color: rgba(241,245,255,0.65) !important; }
+.sidebar-link.active { color: #4D94FF !important; }
+.empty-state h3 { color: #F1F5FF !important; }
+.empty-state p { color: rgba(241,245,255,0.55) !important; }
+.loading-text { color: rgba(241,245,255,0.55) !important; }

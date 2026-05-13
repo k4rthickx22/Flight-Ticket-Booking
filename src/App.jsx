@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { BookingProvider } from './context/BookingContext';
 import Sidebar from './components/Sidebar';
