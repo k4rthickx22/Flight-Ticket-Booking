@@ -32,7 +32,11 @@ const FlightSearchCard = ({ compact = false, onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.from.trim() || !form.to.trim()) {
-      setError('Please enter both departure and destination cities.');
+      setError('Please select both departure and destination cities.');
+      return;
+    }
+    if (form.from === form.to) {
+      setError('Departure and destination cities cannot be the same.');
       return;
     }
     if (!form.date) {
@@ -46,7 +50,7 @@ const FlightSearchCard = ({ compact = false, onSearch }) => {
       const results = searchFlights(form.from, form.to, form.date);
       setLoading(false);
       if (results.length === 0) {
-        setError('No flights found. Try: Chennai, Mumbai, Delhi, Bengaluru, Hyderabad, Kolkata, Goa.');
+        setError('No flights found for this route. Please try a different combination.');
         return;
       }
       setSearchParams({
@@ -84,57 +88,59 @@ const FlightSearchCard = ({ compact = false, onSearch }) => {
 
       <form onSubmit={handleSubmit}>
         <div className="search-fields">
-          {/* FROM */}
+
+          {/* FROM — native select for mobile reliability */}
           <div className="search-field">
-            <label>From</label>
+            <label htmlFor="sf-from">From</label>
             <div className="search-input-wrap">
               <MdFlightTakeoff className="search-input-icon" />
-              <input
-                className="search-input"
-                list="from-cities"
+              <select
+                id="sf-from"
+                className="search-input search-select"
                 name="from"
                 value={form.from}
                 onChange={handleChange}
-                placeholder="Departure city"
-                autoComplete="off"
-              />
-              <datalist id="from-cities">
-                {cityList.map(c => <option key={c} value={c} />)}
-              </datalist>
+              >
+                <option value="">Select departure</option>
+                {cityList.map(c => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
             </div>
           </div>
 
           {/* SWAP */}
-          <button type="button" className="swap-btn" onClick={handleSwap} title="Swap cities">
+          <button type="button" className="swap-btn" onClick={handleSwap} title="Swap cities" aria-label="Swap cities">
             <MdSwapHoriz />
           </button>
 
-          {/* TO */}
+          {/* TO — native select for mobile reliability */}
           <div className="search-field">
-            <label>To</label>
+            <label htmlFor="sf-to">To</label>
             <div className="search-input-wrap">
               <MdFlightLand className="search-input-icon" />
-              <input
-                className="search-input"
-                list="to-cities"
+              <select
+                id="sf-to"
+                className="search-input search-select"
                 name="to"
                 value={form.to}
                 onChange={handleChange}
-                placeholder="Destination city"
-                autoComplete="off"
-              />
-              <datalist id="to-cities">
-                {cityList.map(c => <option key={c} value={c} />)}
-              </datalist>
+              >
+                <option value="">Select destination</option>
+                {cityList.map(c => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
             </div>
           </div>
 
           {/* DATE */}
           <div className="search-field">
-            <label>Departure Date</label>
+            <label htmlFor="sf-date">Departure Date</label>
             <div className="search-input-wrap">
               <MdCalendarToday className="search-input-icon" />
               <input
+                id="sf-date"
                 className="search-input"
                 type="date"
                 name="date"
@@ -146,16 +152,16 @@ const FlightSearchCard = ({ compact = false, onSearch }) => {
           </div>
 
           {/* CABIN CLASS */}
-          <div className="search-field" style={{ maxWidth: 140 }}>
-            <label>Cabin Class</label>
+          <div className="search-field search-field-sm">
+            <label htmlFor="sf-cabin">Cabin Class</label>
             <div className="search-input-wrap">
               <MdAirlineSeatLegroomExtra className="search-input-icon" />
               <select
-                className="search-input"
+                id="sf-cabin"
+                className="search-input search-select"
                 name="cabinClass"
                 value={form.cabinClass}
                 onChange={handleChange}
-                style={{ paddingLeft: 38 }}
               >
                 <option>Economy</option>
                 <option>Business</option>
@@ -165,24 +171,26 @@ const FlightSearchCard = ({ compact = false, onSearch }) => {
           </div>
 
           {/* PASSENGERS */}
-          <div className="search-field" style={{ maxWidth: 110 }}>
-            <label>Passengers</label>
+          <div className="search-field search-field-xs">
+            <label htmlFor="sf-pax">Passengers</label>
             <div className="search-input-wrap">
               <MdPerson className="search-input-icon" />
               <select
-                className="search-input"
+                id="sf-pax"
+                className="search-input search-select"
                 name="passengers"
                 value={form.passengers}
                 onChange={handleChange}
-                style={{ paddingLeft: 38 }}
               >
-                {[1,2,3,4,5,6].map(n => <option key={n} value={n}>{n} {n===1?'Adult':'Adults'}</option>)}
+                {[1,2,3,4,5,6].map(n => (
+                  <option key={n} value={n}>{n} {n===1?'Adult':'Adults'}</option>
+                ))}
               </select>
             </div>
           </div>
 
           {/* SEARCH */}
-          <button type="submit" className="search-btn" disabled={loading}>
+          <button type="submit" className="search-btn" disabled={loading} aria-label="Search flights">
             {loading ? (
               <><span className="search-spinner" /> Searching...</>
             ) : (
@@ -192,7 +200,7 @@ const FlightSearchCard = ({ compact = false, onSearch }) => {
         </div>
 
         {error && (
-          <div style={{ marginTop: 12, fontSize: 13, color: '#e8a04c', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div className="search-error">
             ⚠️ {error}
           </div>
         )}
