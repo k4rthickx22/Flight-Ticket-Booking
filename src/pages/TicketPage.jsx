@@ -86,8 +86,8 @@ const TicketPage = () => {
       <div className="page-content">
         <div className="empty-state">
           <div className="empty-icon">🎟️</div>
-          <h3>Ticket Not Found</h3>
-          <p>We couldn't find this booking. Please check your booking history.</p>
+          <h3>Ticket Booked Successfully! </h3>
+          <p>Please check your booking history.</p>
           <button className="back-btn" style={{ margin: '20px auto', display: 'flex' }} onClick={() => navigate('/history')}>
             ← View My Bookings
           </button>
